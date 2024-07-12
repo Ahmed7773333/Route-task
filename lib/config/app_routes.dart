@@ -30,7 +30,7 @@ class RouteGenerator {
         }
       case Routes.productsListScreen:
         {
-          return RightRouting(const ProductsListScreen());
+          return MaterialPageRoute(builder: (_) => const ProductsListScreen());
         }
 
       default:

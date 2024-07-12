@@ -4,6 +4,18 @@ Route-task
 
 A new Flutter project.
 
+## Screenshots
+
+![Screenshot 1](screenshots/splash.jpeg)
+![Screenshot 2](screenshots/Productlist.jpeg)
+![Screenshot 3](screenshots/details.jpeg)
+
+## Features
+
+- splach
+- Product list screen
+- product details screen
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
