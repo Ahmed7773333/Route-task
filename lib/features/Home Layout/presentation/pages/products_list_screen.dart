@@ -21,13 +21,6 @@ class ProductsListScreen extends StatefulWidget {
 class _ProductsListScreenState extends State<ProductsListScreen> {
   final TextEditingController searchBarController = TextEditingController();
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    di.init();
-  }
-
-  @override
   Widget build(BuildContext context) {
     // final colorss = Theme.of(context).colorScheme;
 

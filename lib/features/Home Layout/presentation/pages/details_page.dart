@@ -8,7 +8,7 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/app_styles.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails(this.item, {Key? key}) : super(key: key);
+  const ProductDetails(this.item, {super.key});
   final Products item;
 
   @override
@@ -42,7 +42,7 @@ class ProductDetails extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(item.thumbnail ?? ''),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.circular(15.r),
               ),
@@ -67,7 +67,7 @@ class ProductDetails extends StatelessWidget {
                     '${AppStrings.egp} ${item.price}',
                     style: AppStyles.blueLableStyle.copyWith(fontSize: 12.sp),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Container(
                     width: 102.w,
                     height: 34.h,
@@ -154,18 +154,57 @@ class ProductDetails extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Text(
-                AppStrings.size,
+                'Reviews',
                 style: AppStyles.blueLableStyle,
               ),
             ),
             SizedBox(height: 16.h),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Text(
-                AppStrings.color,
-                style: AppStyles.blueLableStyle,
+            if (item.reviews != null && item.reviews!.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: SizedBox(
+                  height: 200.h, // Adjust height as needed
+                  child: ListView.builder(
+                    itemCount: item.reviews!.length,
+                    itemBuilder: (context, index) {
+                      final review = item.reviews![index];
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 8.h),
+                        child: Card(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  review.reviewerName ?? 'Anonymous',
+                                  style: AppStyles.blueLableStyle,
+                                ),
+                                SizedBox(height: 4.h),
+                                Text(
+                                  review.comment ?? '',
+                                  style: AppStyles.smallLableStyle,
+                                ),
+                                SizedBox(height: 4.h),
+                                Row(
+                                  children: List.generate(
+                                    review.rating?.toInt() ?? 0,
+                                    (index) => Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 12.sp,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
             SizedBox(height: 16.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -184,7 +223,7 @@ class ProductDetails extends StatelessWidget {
                     '${AppStrings.egp} ${item.price}',
                     style: AppStyles.blueLableStyle.copyWith(fontSize: 12.sp),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.secondry,

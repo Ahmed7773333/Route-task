@@ -41,6 +41,7 @@ dependencies:
   dartz: ^0.10.1
   get_it: ^7.7.0
   carousel_slider: ^4.2.1
+  mockito: ^5.4.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
